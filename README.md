@@ -398,15 +398,6 @@ ADT Queue is a data structure that follows the First-In-First-Out (FIFO) princip
 
 A simple queue is a basic queue where elements are inserted at the rear and removed from the front.
 Complexity analysis for enqueue and dequeue operations is O(1).
-#### Circular Queue:
-
-A circular queue is an optimized queue that reuses the empty spaces in the queue by circling around.
-Complexity analysis for enqueue and dequeue operations is O(1).
-#### Priority Queue:
-
-A priority queue assigns priority to each element and processes them based on their priority.
-Complexity analysis depends on the implementation (e.g., binary heap) and the number of elements.
-Here's an example implementation of a simple queue in C language:
 
 ```
 #include <stdio.h>
@@ -465,6 +456,263 @@ int main() {
     return 0;
 }
 ```
+
+#### Circular Queue:
+
+A circular queue is an optimized queue that reuses the empty spaces in the queue by circling around.
+Complexity analysis for enqueue and dequeue operations is O(1).
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 5
+
+// Structure to represent a circular queue
+typedef struct {
+    int data[MAX_SIZE];
+    int front;
+    int rear;
+} CircularQueue;
+
+// Function to initialize the circular queue
+void initialize(CircularQueue* queue) {
+    queue->front = -1;
+    queue->rear = -1;
+}
+
+// Function to check if the circular queue is empty
+int isEmpty(CircularQueue* queue) {
+    return (queue->front == -1 && queue->rear == -1);
+}
+
+// Function to check if the circular queue is full
+int isFull(CircularQueue* queue) {
+    return ((queue->rear + 1) % MAX_SIZE == queue->front);
+}
+
+// Function to insert an element into the circular queue
+void enqueue(CircularQueue* queue, int value) {
+    if (isFull(queue)) {
+        printf("Circular queue is full. Cannot enqueue element.\n");
+        return;
+    } else if (isEmpty(queue)) {
+        queue->front = 0;
+        queue->rear = 0;
+    } else {
+        queue->rear = (queue->rear + 1) % MAX_SIZE;
+    }
+    queue->data[queue->rear] = value;
+}
+
+// Function to remove an element from the circular queue
+void dequeue(CircularQueue* queue) {
+    if (isEmpty(queue)) {
+        printf("Circular queue is empty. Cannot dequeue element.\n");
+        return;
+    } else if (queue->front == queue->rear) {
+        queue->front = -1;
+        queue->rear = -1;
+    } else {
+        queue->front = (queue->front + 1) % MAX_SIZE;
+    }
+}
+
+// Function to get the front element of the circular queue
+int getFront(CircularQueue* queue) {
+    if (isEmpty(queue)) {
+        printf("Circular queue is empty. No front element.\n");
+        return -1;
+    }
+    return queue->data[queue->front];
+}
+
+// Function to display the elements of the circular queue
+void display(CircularQueue* queue) {
+    if (isEmpty(queue)) {
+        printf("Circular queue is empty.\n");
+        return;
+    }
+    printf("Circular queue: ");
+    int i = queue->front;
+    do {
+        printf("%d ", queue->data[i]);
+        i = (i + 1) % MAX_SIZE;
+    } while (i != (queue->rear + 1) % MAX_SIZE);
+    printf("\n");
+}
+
+int main() {
+    CircularQueue queue;
+    initialize(&queue);
+
+    enqueue(&queue, 10);
+    enqueue(&queue, 20);
+    enqueue(&queue, 30);
+    display(&queue); // Output: 10 20 30
+
+    dequeue(&queue);
+    display(&queue); // Output: 20 30
+
+    enqueue(&queue, 40);
+    enqueue(&queue, 50);
+    enqueue(&queue, 60);
+    display(&queue); // Output: 20 30 40 50 60
+
+    enqueue(&queue, 70); // Output: Circular queue is full. Cannot enqueue element.
+
+    return 0;
+}
+
+```
+
+In this example, we define a structure CircularQueue to represent the circular queue. It contains an array to store the elements, and front and rear indices to keep track of the front and rear positions of the circular queue.
+
+We have the following functions for a circular queue:
+
+- initialize() initializes the circular queue by setting front and rear to -1.
+- isEmpty() checks if the circular queue is empty.
+- isFull() checks if the circular queue is full.
+- enqueue() inserts an element into the circular queue.
+- dequeue() removes an element from the circular queue.
+- getFront() retrieves the front element of the circular queue.
+- display() displays the elements of the circular queue.
+
+In the main() function, we initialize the circular queue and perform enqueue and dequeue operations. We display the circular queue after each operation.
+
+#### Priority Queue:
+
+A priority queue assigns priority to each element and processes them based on their priority.
+Complexity analysis depends on the implementation (e.g., binary heap) and the number of elements.
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 100
+
+// Structure to represent a priority queue element
+typedef struct {
+    int data;
+    int priority;
+} PriorityQueueElement;
+
+// Structure to represent a priority queue
+typedef struct {
+    PriorityQueueElement elements[MAX_SIZE];
+    int size;
+} PriorityQueue;
+
+// Function to initialize the priority queue
+void initialize(PriorityQueue* queue) {
+    queue->size = 0;
+}
+
+// Function to check if the priority queue is empty
+int isEmpty(PriorityQueue* queue) {
+    return (queue->size == 0);
+}
+
+// Function to check if the priority queue is full
+int isFull(PriorityQueue* queue) {
+    return (queue->size == MAX_SIZE);
+}
+
+// Function to enqueue an element with its priority into the priority queue
+void enqueue(PriorityQueue* queue, int data, int priority) {
+    if (isFull(queue)) {
+        printf("Priority queue is full. Cannot enqueue element.\n");
+        return;
+    }
+    PriorityQueueElement newElement;
+    newElement.data = data;
+    newElement.priority = priority;
+    int i = queue->size;
+    while (i > 0 && queue->elements[(i - 1) / 2].priority < priority) {
+        queue->elements[i] = queue->elements[(i - 1) / 2];
+        i = (i - 1) / 2;
+    }
+    queue->elements[i] = newElement;
+    queue->size++;
+}
+
+// Function to dequeue the element with the highest priority from the priority queue
+void dequeue(PriorityQueue* queue) {
+    if (isEmpty(queue)) {
+        printf("Priority queue is empty. Cannot dequeue element.\n");
+        return;
+    }
+    PriorityQueueElement lastElement = queue->elements[queue->size - 1];
+    queue->size--;
+    int i = 0;
+    while (2 * i + 1 < queue->size) {
+        int child = 2 * i + 1;
+        if (child + 1 < queue->size && queue->elements[child + 1].priority > queue->elements[child].priority) {
+            child++;
+        }
+        if (lastElement.priority >= queue->elements[child].priority) {
+            break;
+        }
+        queue->elements[i] = queue->elements[child];
+        i = child;
+    }
+    queue->elements[i] = lastElement;
+}
+
+// Function to get the element with the highest priority from the priority queue
+int getHighestPriorityElement(PriorityQueue* queue) {
+    if (isEmpty(queue)) {
+        printf("Priority queue is empty. No highest priority element.\n");
+        return -1;
+    }
+    return queue->elements[0].data;
+}
+
+// Function to display the elements of the priority queue
+void display(PriorityQueue* queue) {
+    if (isEmpty(queue)) {
+        printf("Priority queue is empty.\n");
+        return;
+    }
+    printf("Priority queue: ");
+    for (int i = 0; i < queue->size; i++) {
+        printf("%d ", queue->elements[i].data);
+    }
+    printf("\n");
+}
+
+int main() {
+    PriorityQueue queue;
+    initialize(&queue);
+
+    enqueue(&queue, 10, 3);
+    enqueue(&queue, 20, 2);
+    enqueue(&queue, 30, 5);
+    display(&queue); // Output: Priority queue: 30 10 20
+
+    dequeue(&queue);
+    display(&queue); // Output: Priority queue: 20 10
+
+    enqueue(&queue, 40, 4);
+    enqueue(&queue, 50, 1);
+    display(&queue); // Output: Priority queue: 50 20 40 10
+
+    return 0;
+}
+```
+In this example, we define a structure PriorityQueueElement to represent an element in the priority queue. It contains two fields: data to store the actual data, and priority to store the priority of the element. We also define a structure PriorityQueue to represent the priority queue, which contains an array of PriorityQueueElement and a size variable to keep track of the number of elements in the queue.
+
+We have the following functions for a priority queue:
+
+- initialize() initializes the priority queue.
+- isEmpty() checks if the priority queue is empty.
+- isFull() checks if the priority queue is full.
+- enqueue() inserts an element with its priority into the priority queue.
+- dequeue() removes the element with the highest priority from the priority queue.
+- getHighestPriorityElement() retrieves the element with the highest priority from the priority queue.
+- display() displays the elements of the priority queue.
+
+In the main() function, we initialize the priority queue and perform enqueue and dequeue operations. We display the priority queue after each operation.
 
 The complexity analysis for queues depends on the specific operations and their implementations.
 
