@@ -30,7 +30,175 @@ Search: Finding a specific element in a data structure.<br>
 Update: Modifying the value of an existing element in a data structure.<br>
 Sorting: Arranging the elements in a specific order.<br>
 Merging: Combining two or more data structures into a single data structure.<br>
-Splitting: Dividing a data structure into two or more smaller data structures.<br>
+Splitting: Dividing a data structure into two or more smaller data structures.
+
+```
+#include <stdio.h>
+
+// Function to insert an element into the array at a specific position
+void insertElement(int arr[], int size, int element, int position) {
+    if (position < 0 || position > size) {
+        printf("Invalid position\n");
+        return;
+    }
+    
+    for (int i = size - 1; i >= position; i--) {
+        arr[i + 1] = arr[i];
+    }
+    
+    arr[position] = element;
+}
+
+// Function to delete an element from the array at a specific position
+void deleteElement(int arr[], int size, int position) {
+    if (position < 0 || position >= size) {
+        printf("Invalid position\n");
+        return;
+    }
+    
+    for (int i = position; i < size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+}
+
+// Function to traverse and print all elements of the array
+void traverseArray(int arr[], int size) {
+    printf("Array elements: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// Function to search for an element in the array
+int searchElement(int arr[], int size, int element) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == element) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Function to update the value of an element at a specific position in the array
+void updateElement(int arr[], int size, int element, int position) {
+    if (position < 0 || position >= size) {
+        printf("Invalid position\n");
+        return;
+    }
+    
+    arr[position] = element;
+}
+
+// Function to perform bubble sort on the array
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Function to merge two arrays into a new array
+void mergeArrays(int arr1[], int size1, int arr2[], int size2, int merged[]) {
+    int i = 0, j = 0, k = 0;
+    
+    while (i < size1 && j < size2) {
+        if (arr1[i] < arr2[j]) {
+            merged[k++] = arr1[i++];
+        } else {
+            merged[k++] = arr2[j++];
+        }
+    }
+    
+    while (i < size1) {
+        merged[k++] = arr1[i++];
+    }
+    
+    while (j < size2) {
+        merged[k++] = arr2[j++];
+    }
+}
+
+// Function to split an array into two separate arrays
+void splitArray(int arr[], int size, int splitIndex, int arr1[], int *size1, int arr2[], int *size2) {
+    if (splitIndex < 0 || splitIndex > size) {
+        printf("Invalid split index\n");
+        return;
+    }
+    
+    *size1 = splitIndex;
+    *size2 = size - splitIndex;
+    
+    for (int i = 0; i < splitIndex; i++) {
+        arr1[i] = arr[i];
+    }
+    
+    for (int i = 0; i < *size2; i++) {
+        arr2[i] = arr[splitIndex + i];
+    }
+}
+
+int main() {
+    int arr[10] = {5, 3, 8, 2, 1, 9, 7, 6, 4, 0};
+    int size = 10;
+    
+    // Insertion
+    insertElement(arr, size, 10, 2);
+    size++;
+    
+    // Deletion
+    deleteElement(arr, size, 4);
+    size--;
+    
+    // Traversal
+    traverseArray(arr, size);
+    
+    // Search
+    int searchIndex = searchElement(arr, size, 6);
+    if (searchIndex != -1) {
+        printf("Element found at index %d\n", searchIndex);
+    } else {
+        printf("Element not found\n");
+    }
+    
+    // Update
+    updateElement(arr, size, 15, 3);
+    
+    // Sorting
+    bubbleSort(arr, size);
+    printf("Sorted array: ");
+    traverseArray(arr, size);
+    
+    // Merging
+    int arr1[5] = {1, 3, 5, 7, 9};
+    int arr2[5] = {2, 4, 6, 8, 10};
+    int merged[10];
+    mergeArrays(arr1, 5, arr2, 5, merged);
+    printf("Merged array: ");
+    traverseArray(merged, 10);
+    
+    // Splitting
+    int splitIndex = 3;
+    int arr3[3];
+    int size3;
+    int arr4[7];
+    int size4;
+    splitArray(merged, 10, splitIndex, arr3, &size3, arr4, &size4);
+    printf("Split array 1: ");
+    traverseArray(arr3, size3);
+    printf("Split array 2: ");
+    traverseArray(arr4, size4);
+    
+    return 0;
+}
+
+```
+
 ### Analysis of an Algorithm:
 
 The analysis of an algorithm involves evaluating its performance characteristics, such as time complexity and space complexity. It helps in understanding how an algorithm's efficiency changes with the input size and allows us to compare different algorithms based on their efficiency.
