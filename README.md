@@ -1,33 +1,35 @@
-Data Organizations:
+# PCC-CS301 Data Structures and Algorithm
+Link to PCC-CS301 syllabus. [Click here.](http://makautexam.net/aicte_details/Syllabus/IT/sem3.pdf)
+### Data Organizations:
 
 Data organization refers to the way data is structured and stored in a computer system. It involves defining the logical and physical structures to efficiently store and access data. Some common data organizations include arrays, linked lists, stacks, queues, trees, and graphs.
 
-Data Structure Operations:
+### Data Structure Operations:
 
 Data structure operations are the basic operations performed on data structures to manipulate the data stored in them. These operations include:
 
-Insertion: Adding new data elements into a data structure.
-Deletion: Removing data elements from a data structure.
-Traversal: Visiting each element in a data structure, usually in a specific order.
-Search: Finding a specific element in a data structure.
-Update: Modifying the value of an existing element in a data structure.
-Sorting: Arranging the elements in a specific order.
-Merging: Combining two or more data structures into a single data structure.
-Splitting: Dividing a data structure into two or more smaller data structures.
-Analysis of an Algorithm:
+Insertion: Adding new data elements into a data structure.<br>
+Deletion: Removing data elements from a data structure.<br>
+Traversal: Visiting each element in a data structure, usually in a specific order.<br>
+Search: Finding a specific element in a data structure.<br>
+Update: Modifying the value of an existing element in a data structure.<br>
+Sorting: Arranging the elements in a specific order.<br>
+Merging: Combining two or more data structures into a single data structure.<br>
+Splitting: Dividing a data structure into two or more smaller data structures.<br>
+### Analysis of an Algorithm:
 
 The analysis of an algorithm involves evaluating its performance characteristics, such as time complexity and space complexity. It helps in understanding how an algorithm's efficiency changes with the input size and allows us to compare different algorithms based on their efficiency.
 
-Asymptotic Notations:
+### Asymptotic Notations:
 
 Asymptotic notations are used to describe the growth rate or complexity of an algorithm as the input size increases. The three commonly used asymptotic notations are:
 
-Big O notation (O): It provides an upper bound on the growth rate of an algorithm. It describes the worst-case scenario.
-Omega notation (Ω): It provides a lower bound on the growth rate of an algorithm. It describes the best-case scenario.
-Theta notation (Θ): It provides both upper and lower bounds on the growth rate of an algorithm. It describes the average-case scenario.
+Big O notation (O): It provides an upper bound on the growth rate of an algorithm. It describes the worst-case scenario.<br>
+Omega notation (Ω): It provides a lower bound on the growth rate of an algorithm. It describes the best-case scenario.<br>
+Theta notation (Θ): It provides both upper and lower bounds on the growth rate of an algorithm. It describes the average-case scenario.<br>
 These notations help in comparing and analyzing the efficiency of algorithms without getting into the specifics of the hardware or implementation details.
 
-Time-Space Trade-off in C Language:
+### Time-Space Trade-off in C Language:
 
 Time-space trade-off refers to the relationship between the time complexity and space complexity of an algorithm. In some cases, improving the time efficiency of an algorithm may require using more memory, while reducing the memory usage may lead to slower execution times.
 
