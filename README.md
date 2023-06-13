@@ -36,3 +36,14 @@ Time-space trade-off refers to the relationship between the time complexity and 
 In the C language, you can make trade-offs between time and space by choosing appropriate data structures and algorithms. For example, using an array might provide faster access to elements but consume more memory, whereas using a linked list might have slower access but require less memory.
 
 It's important to consider the requirements of your specific problem and strike a balance between time and space efficiency based on the available resources and constraints.
+
+### Searching: Linear Search and Binary Search
+
+Searching is the process of finding a specific element in a collection of data. Two commonly used searching techniques are Linear Search and Binary Search.
+
+#### Linear Search:
+Linear search is a simple searching algorithm that checks each element in a collection one by one until the target element is found or the end of the collection is reached.
+It is suitable for unordered or unsorted data.
+The time complexity of linear search is O(n), where 'n' is the number of elements in the collection.
+The space complexity of linear search is O(1) since it does not require any additional space.
+Here's an example of linear search in C language:
