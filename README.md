@@ -5,6 +5,9 @@
 🔗Link to PCC-CS301 syllabus. [Click here.](http://makautexam.net/aicte_details/Syllabus/IT/sem3.pdf) <br>
 🤝Connect with me on Twitter ;) [Click here.](https://twitter.com/NathArchak)
 
+![pcccs301](https://github.com/archakNath/DSAinC_PCCCS301/assets/112867859/1cb742ca-17e4-4aad-ae74-6475f4c81b19)
+
+
 </div>
 
 #### 🤖ABOUT: This repository is made in order to help students learn Data Structure and Algorithms in one place. The contents of this documentation strictly adhere to the [MAKAUT(formerly WBUT) syllabus](http://makautexam.net/aicte_details/Syllabus/IT/sem3.pdf) of PCC-CS301 Data Structure and Algorithm taught in all affiliated colleges in 3rd Semester.
