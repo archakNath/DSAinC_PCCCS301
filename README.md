@@ -9,7 +9,7 @@
 
 #### 🤖ABOUT: This repository is made in order to help students learn Data Structure and Algorithms in one place. The contents of this documentation strictly adhere to the [MAKAUT(formerly WBUT) syllabus](http://makautexam.net/aicte_details/Syllabus/IT/sem3.pdf) of PCC-CS301 Data Structure and Algorithm taught in all affiliated colleges in 3rd Semester.
 #### 📝CONTRIBUTION: Contribution to the betterment of this documentation is highly appreciated. Fork this repo and send push request. You can also connect with me on my socials given above.
-#### 🥸NOTE: This documentation is limited till Linked Lists. Trees, Sorting and Hashing are not yet covered here.
+<code>⚠️NOTE: This documentation is limited till Linked Lists. Trees, Sorting and Hashing are not yet covered here. Also knowledge of Structure and Pointers is necessary!</code>
 
 <hr>
 
