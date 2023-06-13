@@ -1,6 +1,7 @@
 <div align = "center">
   
 # PCC-CS301: Data Structure and Algorithm 🧑‍💻
+⭐Star this repository to appreciate my work. It helps reach greater audience. <br>
 🔗Link to PCC-CS301 syllabus. [Click here.](http://makautexam.net/aicte_details/Syllabus/IT/sem3.pdf) <br>
 🤝Connect with me on Twitter ;) [Click here.](https://twitter.com/NathArchak)
 
