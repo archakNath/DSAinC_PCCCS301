@@ -1,12 +1,18 @@
 <div align = "center">
   
-# PCC-CS301: Data Structure and Algorithm
+# PCC-CS301: Data Structure and Algorithm 🧑‍💻
 🔗Link to PCC-CS301 syllabus. [Click here.](http://makautexam.net/aicte_details/Syllabus/IT/sem3.pdf) <br>
 🤝Connect with me on Twitter ;) [Click here.](https://twitter.com/NathArchak)
 
 </div>
 
-<code>UNIT 1 : Introduction: Basic Terminologies: Elementary Data Organizations, Data Structure Operations: insertion, deletion, traversal etc.; Analysis of an Algorithm, Asymptotic Notations, Time-Space trade off. Searching: Linear Search and Binary Search Techniques and their complexity analysis. 
+#### 🤖ABOUT: This repository is made in order to help students learn Data Structure and Algorithms in one place. The contents of this documentation strictly adhere to the [MAKAUT(formerly WBUT) syllabus](http://makautexam.net/aicte_details/Syllabus/IT/sem3.pdf) of PCC-CS301 Data Structure and Algorithm taught in all affiliated colleges in 3rd Semester.
+#### 📝CONTRIBUTION: Contribution to the betterment of this documentation is highly appreciated. Fork this repo and send push request. You can also connect with me on my socials given above.
+#### 🥸NOTE: This documentation is limited till Linked Lists. Trees, Sorting and Hashing are not yet covered here.
+
+<hr>
+
+<code>UNIT 1️⃣ : Introduction: Basic Terminologies: Elementary Data Organizations, Data Structure Operations: insertion, deletion, traversal, etc.; Analysis of an Algorithm, Asymptotic Notations, Time-Space trade-off. Searching: Linear Search and Binary Search Techniques and their complexity analysis. 
 </code>
 
 ### Data Organizations:
@@ -122,3 +128,224 @@ int main() {
 }
 
 ```
+<hr>
+<code>UNIT 2️⃣ : Stacks and Queues: ADT Stack and its operations: Algorithms and their complexity analysis, Applications of Stacks: Expression Conversion and evaluation - corresponding algorithms and complexity analysis. ADT queue, Types of Queue: Simple Queue, Circular Queue, Priority Queue; Operations on each types of Queues: Algorithms and their analysis.</code>
+
+
+### ADT Stack and its operations:
+
+ADT (Abstract Data Type) Stack is a data structure that follows the Last-In-First-Out (LIFO) principle. It allows insertion and deletion of elements from only one end, called the top of the stack. The basic operations of the stack are:
+
+- Push: Insert an element onto the top of the stack.
+- Pop: Removes and returns the top element from the stack.
+- Peek or Top: Returns the value of the top element without removing it.
+- IsEmpty: Checks if the stack is empty.
+- Size: Returns the number of elements in the stack. <br>
+Here's an example implementation of the ADT Stack in C language:
+```
+#include <stdio.h>
+#define MAX_SIZE 100
+
+typedef struct {
+    int arr[MAX_SIZE];
+    int top;
+} Stack;
+
+void initialize(Stack *stack) {
+    stack->top = -1;
+}
+
+void push(Stack *stack, int data) {
+    if (stack->top == MAX_SIZE - 1) {
+        printf("Stack Overflow\n");
+        return;
+    }
+    stack->arr[++stack->top] = data;
+}
+
+int pop(Stack *stack) {
+    if (stack->top == -1) {
+        printf("Stack Underflow\n");
+        return -1;
+    }
+    return stack->arr[stack->top--];
+}
+
+int peek(Stack *stack) {
+    if (stack->top == -1) {
+        printf("Stack is empty\n");
+        return -1;
+    }
+    return stack->arr[stack->top];
+}
+
+int isEmpty(Stack *stack) {
+    return stack->top == -1;
+}
+
+int size(Stack *stack) {
+    return stack->top + 1;
+}
+
+int main() {
+    Stack stack;
+    initialize(&stack);
+
+    push(&stack, 5);
+    push(&stack, 10);
+    push(&stack, 15);
+
+    printf("Top element: %d\n", peek(&stack));
+    printf("Stack size: %d\n", size(&stack));
+
+    while (!isEmpty(&stack)) {
+        printf("Popped element: %d\n", pop(&stack));
+    }
+
+    return 0;
+}
+```
+
+### Applications of Stacks: Expression Conversion and Evaluation:
+
+#### Expression Conversion:
+
+- Stack can be used to convert an infix expression to postfix or prefix notation.
+- Algorithms like Shunting Yard or Reverse Polish Notation (RPN) can be employed.
+- Complexity analysis depends on the length of the expression.
+
+#### Expression Evaluation:
+
+- Stack can be used to evaluate postfix or prefix expressions.
+- Algorithms like Postfix Evaluation or Prefix Evaluation can be used.
+- Complexity analysis depends on the length of the expression.
+
+
+### ADT Queue and its Types:
+
+ADT Queue is a data structure that follows the First-In-First-Out (FIFO) principle. It allows insertion at one end, called the rear, and deletion at the other end, called the front. There are different types of queues:
+
+#### Simple Queue:
+
+A simple queue is a basic queue where elements are inserted at the rear and removed from the front.
+Complexity analysis for enqueue and dequeue operations is O(1).
+#### Circular Queue:
+
+A circular queue is an optimized queue that reuses the empty spaces in the queue by circling around.
+Complexity analysis for enqueue and dequeue operations is O(1).
+#### Priority Queue:
+
+A priority queue assigns priority to each element and processes them based on their priority.
+Complexity analysis depends on the implementation (e.g., binary heap) and the number of elements.
+Here's an example implementation of a simple queue in C language:
+
+```
+#include <stdio.h>
+#define MAX_SIZE 100
+
+typedef struct {
+    int arr[MAX_SIZE];
+    int front, rear;
+} Queue;
+
+void initialize(Queue *queue) {
+    queue->front = queue->rear = -1;
+}
+
+void enqueue(Queue *queue, int data) {
+    if (queue->rear == MAX_SIZE - 1) {
+        printf("Queue Overflow\n");
+        return;
+    }
+    if (queue->front == -1) {
+        queue->front = 0;
+    }
+    queue->arr[++queue->rear] = data;
+}
+
+int dequeue(Queue *queue) {
+    if (queue->front == -1 || queue->front > queue->rear) {
+        printf("Queue Underflow\n");
+        return -1;
+    }
+    return queue->arr[queue->front++];
+}
+
+int isEmpty(Queue *queue) {
+    return queue->front == -1 || queue->front > queue->rear;
+}
+
+int size(Queue *queue) {
+    return queue->rear - queue->front + 1;
+}
+
+int main() {
+    Queue queue;
+    initialize(&queue);
+
+    enqueue(&queue, 5);
+    enqueue(&queue, 10);
+    enqueue(&queue, 15);
+
+    printf("Queue size: %d\n", size(&queue));
+
+    while (!isEmpty(&queue)) {
+        printf("Dequeued element: %d\n", dequeue(&queue));
+    }
+
+    return 0;
+}
+```
+
+The complexity analysis for queues depends on the specific operations and their implementations.
+
+<hr>
+
+<code>UNIT 3️⃣ : Linked Lists: Singly linked lists: Representation in memory, Algorithms of several operations: Traversing, Searching, Insertion into, Deletion from  linked list; Linked representation of Stack and Queue, Header nodes, Doubly linked list: operations on it and algorithmic analysis; Circular Linked Lists: all operations their algorithms and the complexity analysis.</code>
+
+### Singly Linked Lists:
+
+A singly linked list is a data structure where each node contains a data element and a pointer/reference to the next node in the sequence. Here's an overview of the operations on singly linked lists:
+
+#### Representation in Memory:
+
+- Each node of a singly linked list contains two fields: a data field to store the element and a next field to store the address/reference of the next node.
+- The last node's next field is typically set to NULL to indicate the end of the list.
+### Algorithms for Operations:
+
+#### Traversing:
+
+- To traverse a linked list, you start from the head node and visit each node successively until reaching the end (NULL).
+- Complexity: O(n), where n is the number of nodes in the list.
+#### Searching:
+
+- To search for a specific element in a linked list, you iterate through each node and compare the target element with the data of each node.
+- Complexity: O(n), where n is the number of nodes in the list.
+#### Insertion:
+
+- Insertion can be done at different positions: at the beginning (prepend), at the end (append), or at a specific position (insert after/before a node).
+- Complexity: O(1) for prepend/append, O(n) for insert at a specific position.
+#### Deletion:
+
+- Deletion can be done at different positions: at the beginning, at the end, or at a specific position (delete after/before a node).
+- Complexity: O(1) for delete at the beginning, O(n) for delete at the end or at a specific position.
+### Linked Representation of Stack and Queue:
+
+- Stack and Queue can be implemented using a linked list by considering specific rules for insertion and deletion.
+- In a linked representation of a stack, insertion and deletion are performed at the same end, usually the head of the linked list.
+- In a linked representation of a queue, insertion is done at one end (rear) and deletion is done at the other end (front) of the linked list.
+### Header Nodes:
+
+- Header nodes are additional nodes added at the beginning of a linked list to simplify operations.
+- They contain no data and serve as a dummy node or a sentinel to handle edge cases.
+### Doubly Linked List:
+
+- A doubly linked list is a variation of a linked list where each node contains pointers to both the next and previous nodes.
+- It allows traversal in both directions (forward and backward) and enables efficient insertion and deletion at any position.
+- Operations on a doubly linked list include traversal, searching, insertion, deletion, etc.
+### Circular Linked Lists:
+
+- In a circular linked list, the last node's next pointer is connected to the first node, forming a circular structure.
+- It allows continuous traversal from any node to any other node in the list.
+- Operations on a circular linked list include traversal, searching, insertion, deletion, etc.
+- The complexity analysis for linked list operations depends on the specific operation and the position of the element in the list.
