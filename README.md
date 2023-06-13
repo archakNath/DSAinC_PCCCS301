@@ -24,14 +24,14 @@ Data organization refers to the way data is structured and stored in a computer 
 
 Data structure operations are the basic operations performed on data structures to manipulate the data stored in them. These operations include:
 
-Insertion: Adding new data elements into a data structure.<br>
-Deletion: Removing data elements from a data structure.<br>
-Traversal: Visiting each element in a data structure, usually in a specific order.<br>
-Search: Finding a specific element in a data structure.<br>
-Update: Modifying the value of an existing element in a data structure.<br>
-Sorting: Arranging the elements in a specific order.<br>
-Merging: Combining two or more data structures into a single data structure.<br>
-Splitting: Dividing a data structure into two or more smaller data structures.
+- Insertion: Adding new data elements into a data structure.<br>
+- Deletion: Removing data elements from a data structure.<br>
+- Traversal: Visiting each element in a data structure, usually in a specific order.<br>
+- Search: Finding a specific element in a data structure.<br>
+- Update: Modifying the value of an existing element in a data structure.<br>
+- Sorting: Arranging the elements in a specific order.<br>
+- Merging: Combining two or more data structures into a single data structure.<br>
+- Splitting: Dividing a data structure into two or more smaller data structures.
 
 ```
 #include <stdio.h>
@@ -208,9 +208,10 @@ The analysis of an algorithm involves evaluating its performance characteristics
 
 Asymptotic notations are used to describe the growth rate or complexity of an algorithm as the input size increases. The three commonly used asymptotic notations are:
 
-Big O notation (O): It provides an upper bound on the growth rate of an algorithm. It describes the worst-case scenario.<br>
-Omega notation (Ω): It provides a lower bound on the growth rate of an algorithm. It describes the best-case scenario.<br>
-Theta notation (Θ): It provides both upper and lower bounds on the growth rate of an algorithm. It describes the average-case scenario.<br>
+- Big O notation (O): It provides an upper bound on the growth rate of an algorithm. It describes the worst-case scenario.
+- Omega notation (Ω): It provides a lower bound on the growth rate of an algorithm. It describes the best-case scenario.
+- Theta notation (Θ): It provides both upper and lower bounds on the growth rate of an algorithm. It describes the average-case scenario.
+
 These notations help in comparing and analyzing the efficiency of algorithms without getting into the specifics of the hardware or implementation details.
 
 ### Time-Space Trade-off in C Language:
