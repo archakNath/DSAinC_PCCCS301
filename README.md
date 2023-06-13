@@ -746,6 +746,136 @@ A singly linked list is a data structure where each node contains a data element
 
 - Deletion can be done at different positions: at the beginning, at the end, or at a specific position (delete after/before a node).
 - Complexity: O(1) for delete at the beginning, O(n) for delete at the end or at a specific position.
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure to represent a node
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+// Function to create a new node
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the beginning of the linked list
+Node* insertAtBeginning(Node* head, int data) {
+    Node* newNode = createNode(data);
+    if (head == NULL) {
+        head = newNode;
+    } else {
+        newNode->next = head;
+        head = newNode;
+    }
+    return head;
+}
+
+// Function to insert a node at the end of the linked list
+Node* insertAtEnd(Node* head, int data) {
+    Node* newNode = createNode(data);
+    if (head == NULL) {
+        head = newNode;
+    } else {
+        Node* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    return head;
+}
+
+// Function to delete a node from the linked list
+Node* deleteNode(Node* head, int data) {
+    if (head == NULL) {
+        printf("Linked list is empty. Cannot delete node.\n");
+        return head;
+    }
+    Node* temp = head;
+    Node* prev = NULL;
+    if (temp != NULL && temp->data == data) {
+        head = temp->next;
+        free(temp);
+        return head;
+    }
+    while (temp != NULL && temp->data != data) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL) {
+        printf("Node not found in the linked list.\n");
+        return head;
+    }
+    prev->next = temp->next;
+    free(temp);
+    return head;
+}
+
+// Function to display the linked list
+void display(Node* head) {
+    Node* temp = head;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+// Function to search for an element in the linked list
+int search(Node* head, int data) {
+    Node* temp = head;
+    int position = 0;
+    while (temp != NULL) {
+        if (temp->data == data) {
+            return position;
+        }
+        temp = temp->next;
+        position++;
+    }
+    return -1; // Element not found
+}
+
+int main() {
+    Node* head = NULL;
+
+    head = insertAtBeginning(head, 10);
+    head = insertAtEnd(head, 20);
+    head = insertAtEnd(head, 30);
+    display(head); // Output: 10 20 30
+
+    head = deleteNode(head, 20);
+    display(head); // Output: 10 30
+
+    int position = search(head, 10);
+    if (position != -1) {
+        printf("Element found at position %d\n", position);
+    } else {
+        printf("Element not found in the linked list.\n");
+    }
+
+    return 0;
+}
+```
+In this example, we define a structure Node to represent a node in the linked list. Each node contains a data element and a pointer to the next node.
+
+We have several functions:
+
+- createNode() creates a new node with the given data.
+- insertAtBeginning() inserts a node at the beginning of the linked list.
+- insertAtEnd() inserts a node at the end of the linked list.
+- deleteNode() deletes a node with the given data from the linked list.
+- display() displays the elements of the linked list.
+- search() searches for an element in the linked list and returns its position.
+
+In the main() function, we create a linked list by inserting nodes at the beginning and end. We display the linked list, delete a node, and display the updated linked list. Finally, we search for an element in the linked list and display the result.
+
 ### Linked Representation of Stack and Queue:
 
 - Stack and Queue can be implemented using a linked list by considering specific rules for insertion and deletion.
@@ -755,14 +885,271 @@ A singly linked list is a data structure where each node contains a data element
 
 - Header nodes are additional nodes added at the beginning of a linked list to simplify operations.
 - They contain no data and serve as a dummy node or a sentinel to handle edge cases.
+
+To learn more about header nodes, [click here.](https://www.geeksforgeeks.org/header-linked-list-in-c/)
 ### Doubly Linked List:
 
 - A doubly linked list is a variation of a linked list where each node contains pointers to both the next and previous nodes.
 - It allows traversal in both directions (forward and backward) and enables efficient insertion and deletion at any position.
 - Operations on a doubly linked list include traversal, searching, insertion, deletion, etc.
+
+Here's an example of a doubly linked list implementation in C:
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure to represent a node
+typedef struct Node {
+    int data;
+    struct Node* prev;
+    struct Node* next;
+} Node;
+
+// Function to create a new node
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the beginning of the linked list
+Node* insertAtBeginning(Node* head, int data) {
+    Node* newNode = createNode(data);
+    if (head == NULL) {
+        head = newNode;
+    } else {
+        newNode->next = head;
+        head->prev = newNode;
+        head = newNode;
+    }
+    return head;
+}
+
+// Function to insert a node at the end of the linked list
+Node* insertAtEnd(Node* head, int data) {
+    Node* newNode = createNode(data);
+    if (head == NULL) {
+        head = newNode;
+    } else {
+        Node* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+        newNode->prev = temp;
+    }
+    return head;
+}
+
+// Function to delete a node from the linked list
+Node* deleteNode(Node* head, int data) {
+    if (head == NULL) {
+        printf("Linked list is empty. Cannot delete node.\n");
+        return head;
+    }
+    Node* temp = head;
+    if (temp != NULL && temp->data == data) {
+        head = temp->next;
+        if (head != NULL) {
+            head->prev = NULL;
+        }
+        free(temp);
+        return head;
+    }
+    while (temp != NULL && temp->data != data) {
+        temp = temp->next;
+    }
+    if (temp == NULL) {
+        printf("Node not found in the linked list.\n");
+        return head;
+    }
+    if (temp->prev != NULL) {
+        temp->prev->next = temp->next;
+    }
+    if (temp->next != NULL) {
+        temp->next->prev = temp->prev;
+    }
+    free(temp);
+    return head;
+}
+
+// Function to display the linked list in forward direction
+void displayForward(Node* head) {
+    Node* temp = head;
+    printf("Linked list (forward): ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+// Function to display the linked list in reverse direction
+void displayBackward(Node* head) {
+    Node* temp = head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    printf("Linked list (backward): ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->prev;
+    }
+    printf("\n");
+}
+
+int main() {
+    Node* head = NULL;
+
+    head = insertAtBeginning(head, 10);
+    head = insertAtEnd(head, 20);
+    head = insertAtEnd(head, 30);
+    displayForward(head);  // Output: 10 20 30
+    displayBackward(head); // Output: 30 20 10
+
+    head = deleteNode(head, 20);
+    displayForward(head);  // Output: 10 30
+
+    return 0;
+}
+```
+In this example, the Node structure has an additional pointer called prev, which points to the previous node.
+
+We have similar functions as in the singly linked list implementation, with some modifications to handle the doubly linked list:
+
+- createNode() creates a new node with the given data and initializes the prev and next pointers to NULL.
+- insertAtBeginning() inserts a node at the beginning of the linked list and updates the prev and next pointers accordingly.
+- insertAtEnd() inserts a node at the end of the linked list and updates the prev and next pointers accordingly.
+- deleteNode() deletes a node with the given data from the linked list and updates the prev and next pointers of adjacent nodes.
+- displayForward() displays the elements of the linked list in the forward direction, starting from the head.
+- displayBackward() displays the elements of the linked list in the reverse direction, starting from the last node.
+
+In the main() function, we create a doubly linked list by inserting nodes at the beginning and end. We display the linked list in both forward and backward directions. We then delete a node from the list and display the updated linked list.
+
 ### Circular Linked Lists:
 
 - In a circular linked list, the last node's next pointer is connected to the first node, forming a circular structure.
 - It allows continuous traversal from any node to any other node in the list.
 - Operations on a circular linked list include traversal, searching, insertion, deletion, etc.
 - The complexity analysis for linked list operations depends on the specific operation and the position of the element in the list.
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure to represent a node
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+// Function to create a new node
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the beginning of the circular linked list
+Node* insertAtBeginning(Node* last, int data) {
+    Node* newNode = createNode(data);
+    if (last == NULL) {
+        last = newNode;
+        last->next = last;
+    } else {
+        newNode->next = last->next;
+        last->next = newNode;
+    }
+    return last;
+}
+
+// Function to insert a node at the end of the circular linked list
+Node* insertAtEnd(Node* last, int data) {
+    Node* newNode = createNode(data);
+    if (last == NULL) {
+        last = newNode;
+        last->next = last;
+    } else {
+        newNode->next = last->next;
+        last->next = newNode;
+        last = newNode;
+    }
+    return last;
+}
+
+// Function to delete a node from the circular linked list
+Node* deleteNode(Node* last, int data) {
+    if (last == NULL) {
+        printf("Linked list is empty. Cannot delete node.\n");
+        return last;
+    }
+    Node* temp = last->next;
+    Node* prev = last;
+    if (temp->data == data) {
+        if (temp == last) {
+            last = NULL;
+        } else {
+            prev->next = temp->next;
+        }
+        free(temp);
+        return last;
+    }
+    while (temp != last && temp->data != data) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == last && temp->data != data) {
+        printf("Node not found in the circular linked list.\n");
+        return last;
+    }
+    prev->next = temp->next;
+    if (temp == last) {
+        last = prev;
+    }
+    free(temp);
+    return last;
+}
+
+// Function to display the circular linked list
+void display(Node* last) {
+    if (last == NULL) {
+        printf("Circular linked list is empty.\n");
+        return;
+    }
+    Node* temp = last->next;
+    printf("Circular linked list: ");
+    do {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    } while (temp != last->next);
+    printf("\n");
+}
+
+int main() {
+    Node* last = NULL;
+
+    last = insertAtBeginning(last, 10);
+    last = insertAtEnd(last, 20);
+    last = insertAtEnd(last, 30);
+    display(last);  // Output: 10 20 30
+
+    last = deleteNode(last, 20);
+    display(last);  // Output: 10 30
+
+    return 0;
+}
+```
+In this example, the Node structure is similar to the one used in a singly linked list.
+
+We have the following functions for a circular linked list:
+
+- createNode() creates a new node with the given data and initializes the next pointer to NULL.
+- insertAtBeginning() inserts a node at the beginning of the circular linked list and updates the next pointers accordingly.
+- insertAtEnd() inserts a node at the end of the circular linked list and updates the next pointers accordingly.
+- deleteNode() deletes a node with the given data from the circular linked list and updates the next pointers accordingly.
+- display() displays the elements of the circular linked list.
+
+In the main() function, we create a circular linked list by inserting nodes at the beginning and end. We display the circular linked list, delete a node, and display the updated circular linked list.
