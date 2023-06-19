@@ -36,7 +36,7 @@ Data structure operations are the basic operations performed on data structures 
 - Merging: Combining two or more data structures into a single data structure.<br>
 - Splitting: Dividing a data structure into two or more smaller data structures.
 
-```
+```c
 #include <stdio.h>
 
 // Function to insert an element into the array at a specific position
@@ -236,7 +236,7 @@ Searching is the process of finding a specific element in a collection of data. 
 - The space complexity of linear search is O(1) since it does not require any additional space.<br>
 Here's an example of linear search in C language:
 
-```
+```c
 #include <stdio.h>
 
 int linearSearch(int arr[], int n, int target) {
@@ -270,7 +270,7 @@ int main() {
 - The space complexity of binary search is O(1) since it does not require any additional space.<br>
 Here's an example of binary search in C language:
 
-```
+```c
 #include <stdio.h>
 
 int binarySearch(int arr[], int low, int high, int target) {
@@ -315,7 +315,7 @@ ADT (Abstract Data Type) Stack is a data structure that follows the Last-In-Firs
 - IsEmpty: Checks if the stack is empty.
 - Size: Returns the number of elements in the stack. <br>
 Here's an example implementation of the ADT Stack in C language:
-```
+```c
 #include <stdio.h>
 #define MAX_SIZE 100
 
@@ -403,7 +403,7 @@ ADT Queue is a data structure that follows the First-In-First-Out (FIFO) princip
 A simple queue is a basic queue where elements are inserted at the rear and removed from the front.
 Complexity analysis for enqueue and dequeue operations is O(1).
 
-```
+```c
 #include <stdio.h>
 #define MAX_SIZE 100
 
@@ -466,7 +466,7 @@ int main() {
 A circular queue is an optimized queue that reuses the empty spaces in the queue by circling around.
 Complexity analysis for enqueue and dequeue operations is O(1).
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -589,7 +589,7 @@ In the main() function, we initialize the circular queue and perform enqueue and
 A priority queue assigns priority to each element and processes them based on their priority.
 Complexity analysis depends on the implementation (e.g., binary heap) and the number of elements.
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -751,7 +751,7 @@ A singly linked list is a data structure where each node contains a data element
 - Deletion can be done at different positions: at the beginning, at the end, or at a specific position (delete after/before a node).
 - Complexity: O(1) for delete at the beginning, O(n) for delete at the end or at a specific position.
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -899,7 +899,7 @@ To learn more about header nodes, [click here.](https://www.geeksforgeeks.org/he
 
 Here's an example of a doubly linked list implementation in C:
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -1039,7 +1039,7 @@ In the main() function, we create a doubly linked list by inserting nodes at the
 - It allows continuous traversal from any node to any other node in the list.
 - Operations on a circular linked list include traversal, searching, insertion, deletion, etc.
 - The complexity analysis for linked list operations depends on the specific operation and the position of the element in the list.
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
